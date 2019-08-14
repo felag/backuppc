@@ -12,7 +12,7 @@
  
  #
  # TCP port number on which the BackupPC server listens for and accepts
-@@ -259,7 +262,7 @@
+@@ -291,7 +297,7 @@
  # Full path to various commands for archiving
  #
  $Conf{SplitPath} = '/usr/bin/split';
@@ -26,7 +26,7 @@
  #               
  #
 -$Conf{XferMethod} = 'smb';
-+$Conf{XferMethod} = 'rsyncd';
++$Conf{XferMethod} = 'rsync';
  
  #
  # Level of verbosity in Xfer log files.  0 means be quiet, 1 will give
@@ -39,6 +39,23 @@
  
  #
  # Command to run smbclient for a full dump.
+@@ -1181,7 +1181,7 @@ $Conf{RsyncClientPath} = '';
+ # version of rsync that is used on the server for rsync and rsyncd
+ # transfers.
+ #
+-$Conf{RsyncBackupPCPath} = "";
++$Conf{RsyncBackupPCPath} = "/usr/bin/rsync_bpc";
+ 
+ #
+ # Ssh arguments for rsync to run ssh to connect to the client.
+@@ -1269,7 +1269,6 @@ $Conf{RsyncArgs} = [
+             '--hard-links',
+             '--delete',
+             '--delete-excluded',
+-            '--one-file-system',
+             '--partial',
+             '--log-format=log: %o %i %B %8U,%8G %9l %f%L',
+             '--stats',
 @@ -1479,7 +1482,7 @@
  # Full path for ssh. Security caution: normal users should not
  # allowed to write to this file or directory.
@@ -57,6 +74,15 @@
  
  #
  # NmbLookup command.  Given an IP address, does an nmblookup on that
+@@ -1869,7 +1868,7 @@ $Conf{SendmailPath} = '';
+ # rounded up (ie: 2.5 means a user will never receive email more
+ # than once every 3 days).
+ #
+-$Conf{EMailNotifyMinDays} = 2.5;
++$Conf{EMailNotifyMinDays} = 1;
+ 
+ #
+ # Name to use as the "from" name for email.  Depending upon your mail
 @@ -1931,8 +1934,8 @@
  #    $Conf{CgiAdminUsers}     = 'craig celia';
  #    --> administrative users are only craig and celia'.
@@ -73,7 +99,16 @@
  # for SCGI.  Used for links in email messages.
  #
 -$Conf{CgiURL} = 'http://XXXXXX/cgi-bin/BackupPC_Admin';
-+$Conf{CgiURL} = 'http://'.$Conf{ServerHost}.'/backuppc/index.cgi';
++$Conf{CgiURL} = 'http://'.$Conf{ServerHost}.'/index.cgi';
  
  #
  # Full path to the rrdtool command.  If available, graphs of pool usage
+@@ -2060,7 +2059,7 @@ $Conf{CgiURL} = '';
+ # Security caution: normal users should not allowed to write to this file
+ # or directory.
+ #
+-$Conf{RrdToolPath} = '';
++$Conf{RrdToolPath} = '/usr/bin/rrdtool';
+ 
+ #   
+ # Language to use.  See lib/BackupPC/Lang for the list of supported
