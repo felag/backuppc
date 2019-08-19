@@ -90,7 +90,7 @@ install: build
 			--data-dir /var/lib/backuppc \
 			--dest-dir $(CURDIR)/debian/backuppc/ \
 			--html-dir /usr/share/backuppc/image \
-			--html-dir-url /backuppc/image \
+			--html-dir-url /image \
 			--install-dir /usr/share/backuppc; \
 		pod2man --utf8 --section=8 --center="BackupPC manual" doc/BackupPC.pod backuppc.8; \
 		perl -e "s/.IX Title.*/.SH NAME\nbackuppc \\- BackupPC manual/g" -p -i.tmp backuppc.8; \
