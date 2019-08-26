@@ -48,14 +48,6 @@
  
  #
  # Ssh arguments for rsync to run ssh to connect to the client.
-@@ -1269,7 +1269,6 @@
-             '--hard-links',
-             '--delete',
-             '--delete-excluded',
--            '--one-file-system',
-             '--partial',
-             '--log-format=log: %o %i %B %8U,%8G %9l %f%L',
-             '--stats',
 @@ -1479,7 +1482,7 @@
  # Full path for ssh. Security caution: normal users should not
  # allowed to write to this file or directory.
